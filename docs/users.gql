@@ -1,0 +1,40 @@
+EXAMPLE mutations and queries
+
+mutation CREATE_NEW_USER{
+  createNewUser(
+    newUser: {
+      username: "test2"
+      email: "something2@gmail.com"
+      password: "randomPass2"
+    }
+  ) {
+    username
+    email
+    password
+  }
+}
+
+mutation EDIT_USER_BY_ID {
+  editUserByID(
+    updatedUser: {
+      username: "editedTest1"
+      email: "something@gmail.com"
+      password: "randomPass"
+    }
+    id: "5ff661fa101a6384cf5a28f4"
+  ) {
+    id
+    username
+    email
+    password
+  }
+}
+
+query ALL_USERS {
+  getAllUsers {
+    username
+    email
+    password
+    firstName
+  }
+}

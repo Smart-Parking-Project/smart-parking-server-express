@@ -1,0 +1,39 @@
+{
+  "name": "capstone-project-express-server",
+  "version": "1.0.0",
+  "description": "This is the server for 4th year capstone project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node -r esm .",
+    "dev": "nodemon -r esm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Smart-Parking-Project/smart-parking-server-express.git"
+  },
+  "author": "Sudarsana Sandeep, Omar Elberougy, Daniel Derese, Danish Butt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Smart-Parking-Project/smart-parking-server-express/issues"
+  },
+  "homepage": "https://github.com/Smart-Parking-Project/smart-parking-server-express#readme",
+  "dependencies": {
+    "apollo-server-express": "^2.19.1",
+    "consola": "^2.15.0",
+    "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.10",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1"
+  }
+}
