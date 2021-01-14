@@ -3,14 +3,19 @@ EXAMPLE mutations and queries
 mutation CREATE_NEW_USER{
   createNewUser(
     newUser: {
-      username: "test2"
-      email: "something2@gmail.com"
-      password: "randomPass2"
+      username: "test5"
+      email: "onemoretest@yahoo.com"
+      password: "randomPasswordAgain"
+      firstName: "Omar"
     }
   ) {
-    username
-    email
-    password
+    token
+    user {
+      id
+      username
+      email
+      firstName
+    }
   }
 }
 
@@ -36,5 +41,36 @@ query ALL_USERS {
     email
     password
     firstName
+  }
+}
+
+query GET_USER_BY_ID {
+  getUserById(id: "5ff656ecab8a21820dca0c73") {
+    username
+    email
+    password
+  }
+}
+
+query AUTHENTICATE_USER {
+  authenticateUser(username: "test4", password: "randomPasswordAgain") {
+    token
+    user {
+      id
+      email
+      username
+      firstName
+      lastName
+    }
+  }
+}
+
+query GET_AUTH_USER_PROFILE {
+  authUserProfile {
+    id
+    username
+    email
+    firstName
+    lastName
   }
 }

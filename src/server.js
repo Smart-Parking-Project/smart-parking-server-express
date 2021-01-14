@@ -5,17 +5,27 @@ import { ApolloServer } from 'apollo-server-express';
 import { resolvers, typeDefs } from './graphql/index';
 import mongoose from 'mongoose';
 import * as AppModels from './models/index';
+import AuthMiddleware from './middlewares/auth';
+import { schemaDirectives } from './graphql/directives';
 
 // Initialize the Express Application
 const app = express();
+app.use(AuthMiddleware);
 
 // Initialize Apollo server
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+  schemaDirectives,
   playground: IN_PROD,
-  context: {
-    ...AppModels,
+  context: ({ req }) => {
+    let { isAuth, user } = req;
+    return {
+      req,
+      isAuth,
+      user,
+      ...AppModels,
+    };
   },
 });
 
