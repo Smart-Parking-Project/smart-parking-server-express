@@ -2,7 +2,10 @@ import { UserInputError } from 'apollo-server-express';
 import { hash, compare } from 'bcryptjs';
 import { result } from 'lodash';
 import { issueToken, serializeUser } from '../../helpers';
-import { validateRegisterInput } from '../../validators/user';
+import {
+  validateRegisterInput,
+  validateLoginInput,
+} from '../../validators/user';
 
 export default {
   Query: {
@@ -15,26 +18,30 @@ export default {
       return users;
     },
     authenticateUser: async (_, { username, password }, { User }) => {
-      try {
-        let user = await User.findOne({ username });
-        if (!user) {
-          throw new Error('User not found.');
-        }
-        let isEqual = await compare(password, user.password);
-        if (!isEqual) {
-          throw new Error('Invalid password.');
-        }
-        user = user.toObject();
-        user.id = user._id;
-        user = serializeUser(user);
-        let token = await issueToken(user);
-        return {
-          user,
-          token,
-        };
-      } catch (err) {
-        throw new ApolloError(err.message, 403);
+      const { valid, errors } = validateLoginInput(username, password);
+
+      if (!valid) {
+        throw new UserInputError('Errors', { errors });
       }
+
+      let user = await User.findOne({ username });
+      if (!user) {
+        errors.general = 'User not found.';
+        throw new UserInputError('User not found.', { errors });
+      }
+      let isEqual = await compare(password, user.password);
+      if (!isEqual) {
+        errors.general = 'Wrong credentials.';
+        throw new UserInputError('Invalid password.', { errors });
+      }
+      user = user.toObject();
+      user.id = user._id;
+      user = serializeUser(user);
+      let token = await issueToken(user);
+      return {
+        user,
+        token,
+      };
     },
     authUserProfile: async (_, {}, { user }) => user,
   },
