@@ -17,6 +17,7 @@ export default gql`
     username: String!
     email: String!
     password: String!
+    confirmPassword: String!
     firstName: String
     lastName: String
   }
