@@ -19,39 +19,6 @@ mutation CREATE_NEW_USER{
   }
 }
 
-mutation EDIT_USER_BY_ID {
-  editUserByID(
-    updatedUser: {
-      username: "editedTest1"
-      email: "something@gmail.com"
-      password: "randomPass"
-    }
-    id: "5ff661fa101a6384cf5a28f4"
-  ) {
-    id
-    username
-    email
-    password
-  }
-}
-
-query ALL_USERS {
-  getAllUsers {
-    username
-    email
-    password
-    firstName
-  }
-}
-
-query GET_USER_BY_ID {
-  getUserById(id: "5ff656ecab8a21820dca0c73") {
-    username
-    email
-    password
-  }
-}
-
 query AUTHENTICATE_USER {
   authenticateUser(username: "test4", password: "randomPasswordAgain") {
     token
@@ -65,12 +32,4 @@ query AUTHENTICATE_USER {
   }
 }
 
-query GET_AUTH_USER_PROFILE {
-  authUserProfile {
-    id
-    username
-    email
-    firstName
-    lastName
-  }
-}
+

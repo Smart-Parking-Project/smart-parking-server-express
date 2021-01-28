@@ -5,27 +5,20 @@ import { ApolloServer } from 'apollo-server-express';
 import { resolvers, typeDefs } from './graphql/index';
 import mongoose from 'mongoose';
 import * as AppModels from './models/index';
-import AuthMiddleware from './middlewares/auth';
-import { schemaDirectives } from './graphql/directives';
 import cors from 'cors';
 
 // Initialize the Express Application
 const app = express();
-app.use(AuthMiddleware);
 app.use(cors());
 
 // Initialize Apollo server
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  schemaDirectives,
   playground: IN_PROD,
   context: ({ req }) => {
-    let { isAuth, user } = req;
     return {
       req,
-      isAuth,
-      user,
       ...AppModels,
     };
   },
