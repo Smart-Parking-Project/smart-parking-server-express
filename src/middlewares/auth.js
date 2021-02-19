@@ -1,5 +1,4 @@
 import { verify } from 'jsonwebtoken';
-import { SECRET } from '../config';
 import { AuthenticationError } from 'apollo-server-express';
 
 const AuthMiddleware = async (context) => {
@@ -10,7 +9,7 @@ const AuthMiddleware = async (context) => {
 
     if (token) {
       try {
-        const user = verify(token, SECRET);
+        const user = verify(token, process.env.SECRET);
         return user;
       } catch (err) {
         throw new AuthenticationError('Invalid or Expired token');

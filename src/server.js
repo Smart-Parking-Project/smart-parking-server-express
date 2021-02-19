@@ -1,6 +1,7 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import consola from 'consola';
-import { PORT, IN_PROD, DB_CONNECT } from './config/index';
 import { ApolloServer } from 'apollo-server-express';
 import { resolvers, typeDefs } from './graphql/index';
 import mongoose from 'mongoose';
@@ -15,7 +16,7 @@ app.use(cors());
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  playground: IN_PROD,
+  playground: process.env.IN_PROD,
   context: ({ req }) => {
     return {
       req,
@@ -26,7 +27,7 @@ const server = new ApolloServer({
 
 const startApp = async () => {
   try {
-    await mongoose.connect(DB_CONNECT, {
+    await mongoose.connect(process.env.DB_CONNECT, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: true,
@@ -38,10 +39,10 @@ const startApp = async () => {
     // Injecting Apollo server middleware into Express Application
     server.applyMiddleware({ app });
 
-    app.listen(PORT, () =>
+    app.listen(process.env.PORT, () =>
       consola.success({
         badge: true,
-        message: `Server running on port ${PORT}`,
+        message: `Server running on port ${process.env.PORT}`,
       })
     );
   } catch (err) {

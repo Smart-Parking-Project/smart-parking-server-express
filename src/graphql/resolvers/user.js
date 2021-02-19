@@ -6,7 +6,6 @@ import {
   validateRegisterInput,
   validateLoginInput,
 } from '../../validators/user';
-import { SECRET } from '../../config';
 
 function createToken(user) {
   return sign(
@@ -15,7 +14,7 @@ function createToken(user) {
       email: user.email,
       username: user.username,
     },
-    SECRET,
+    process.env.SECRET,
     { expiresIn: '1h' }
   );
 }
