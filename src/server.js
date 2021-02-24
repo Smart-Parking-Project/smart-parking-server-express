@@ -5,7 +5,7 @@ import consola from 'consola';
 import { ApolloServer } from 'apollo-server-express';
 import { resolvers, typeDefs } from './graphql/index';
 import mongoose from 'mongoose';
-import * as AppModels from './models/index';
+import AppModels from './models/index';
 import cors from 'cors';
 
 // Initialize the Express Application
