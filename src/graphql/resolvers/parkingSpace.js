@@ -45,7 +45,7 @@ export default {
         parkingSpace.parkingLotIdentifier = parkingLotIdentifier;
       }
 
-      if (isOccupied) {
+      if (isOccupied != null) {
         parkingSpace.isOccupied = isOccupied;
       }
 
