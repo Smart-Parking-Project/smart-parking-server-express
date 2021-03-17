@@ -1,10 +1,9 @@
-export default parkingSession;
-
 export default {
   Mutation: {
     createParkingSession: async (
       _,
       {
+        userId,
         newSession: {
           enterTime,
           exitTime,
@@ -12,7 +11,6 @@ export default {
           exitDate,
           payAmount,
           hasPaid,
-          userId,
         },
       },
       { ParkingSession }

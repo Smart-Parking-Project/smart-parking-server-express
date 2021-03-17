@@ -10,6 +10,7 @@ export default gql`
 
   extend type Mutation {
     createParkingSession(
+      userId: ID!
       newSession: CreateParkingSessionInput!
     ): ParkingSession!
     endParkingSession(endSession: EndParkingSessionInput!): ParkingSession!
@@ -21,15 +22,16 @@ export default gql`
     exitTime: String
     enterDate: String!
     exitDate: String
-    payAmount: Float
+    payAmount: String
+    elapsedTime: String
     hasPaid: Boolean!
-    userId: ID!
   }
 
   input EndParkingSessionInput {
     id: ID!
     exitTime: String!
     exitDate: String!
+    elapsedTime: String!
   }
 
   type ParkingSession {
@@ -37,9 +39,10 @@ export default gql`
     enterTime: String!
     exitTime: String
     enterDate: String!
-    exitDate: String!
-    payAmount: Float
+    exitDate: String
+    elapsedTime: String
+    payAmount: String
     hasPaid: Boolean!
-    user: ID!
+    userId: ID!
   }
 `;

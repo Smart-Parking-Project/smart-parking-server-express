@@ -21,15 +21,19 @@ const ParkingSessionSchema = new Schema({
     type: String,
     required: false,
   },
+  elapsedTime: {
+    type: String,
+    required: false,
+  },
   payAmount: {
-    type: Number,
+    type: String,
     required: false,
   },
   hasPaid: {
     type: Boolean,
     required: false,
   },
-  user: {
+  userId: {
     type: Schema.Types.ObjectId,
     ref: 'users',
     required: true,
