@@ -56,9 +56,12 @@ export default {
         parkingSession.exitDate = exitDate;
       }
 
+      if (elapsedTime) {
+        parkingSession.elapsedTime = elapsedTime;
+      }
       parkingSession.payAmount = calculatePayment(elapsedTime);
 
-      await parkingSession.save();
+      let result = await parkingSession.save();
       return {
         ...result._doc,
         id: result._id,
