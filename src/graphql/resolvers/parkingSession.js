@@ -76,7 +76,7 @@ const calculatePayment = (time) => {
   let minutes = splitTime[1];
   let seconds = splitTime[2];
 
-  if (parseInt(minutes) > 0 && parseInt(seconds) > 0) {
+  if (parseInt(minutes) > 0 || parseInt(seconds) > 0) {
     hours = parseInt(hours) + 1;
   }
 
