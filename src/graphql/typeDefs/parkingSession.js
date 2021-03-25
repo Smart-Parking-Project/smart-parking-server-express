@@ -4,7 +4,7 @@ export default gql`
   extend type Query {
     getPaymentAmount(id: ID!): Float!
     getCurrentParkingSession(id: ID!): ParkingSession!
-    getAllParkingSessions: [ParkingSession]
+    getAllCurrentUserParkingSessions(userId: ID!): [ParkingSession]
     getAllUserSessions: [ParkingSession]
   }
 
@@ -14,7 +14,7 @@ export default gql`
       newSession: CreateParkingSessionInput!
     ): ParkingSession!
     endParkingSession(endSession: EndParkingSessionInput!): ParkingSession!
-    paidForSession(hasPaid: Boolean!): ParkingSession!
+    paidForSession(sessionId: ID!, hasPaid: Boolean!): ParkingSession!
   }
 
   input CreateParkingSessionInput {
