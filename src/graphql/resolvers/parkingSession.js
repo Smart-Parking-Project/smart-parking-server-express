@@ -1,3 +1,6 @@
+import { mongoose } from 'mongoose';
+import parkingSession from '../typeDefs/parkingSession';
+
 export default {
   Mutation: {
     createParkingSession: async (
@@ -38,11 +41,6 @@ export default {
       { ParkingSession }
     ) => {
       let parkingSession = await ParkingSession.findOne({ _id: id });
-      // let userParkingSession = await ParkingSession.find({
-      //   userId: '604ae17a5aa18f4be456e782',
-      // });
-
-      //console.log(userParkingSession);
 
       if (!parkingSession) {
         let msg = 'parkingSession not found.';
@@ -98,6 +96,21 @@ export default {
   Query: {
     getAllUserParkingSessions: async (_, args, { ParkingSession }) => {
       return ParkingSession.find({});
+    },
+    getAllCurrentUserParkingSessions: async (_, { id }, { ParkingSession }) => {
+      let parkingSessions = await ParkingSession.find({
+        userId: id,
+      });
+
+      if (parkingSession.length === 0) {
+        let msg = 'No parking sessions found for this user';
+        throw new UserInputError(msg, {
+          errors: {
+            id: 'Provided userid has no corresponding parking sessions',
+          },
+        });
+      }
+      return parkingSessions;
     },
   },
 };

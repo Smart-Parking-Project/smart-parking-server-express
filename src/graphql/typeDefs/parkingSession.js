@@ -3,7 +3,7 @@ import { gql } from 'apollo-server-express';
 export default gql`
   extend type Query {
     getCurrentParkingSession(id: ID!): ParkingSession!
-    getAllCurrentUserParkingSessions(userId: ID!): [ParkingSession]
+    getAllCurrentUserParkingSessions(id: ID!): [ParkingSession]
     getAllUserParkingSessions: [ParkingSession]
   }
 
