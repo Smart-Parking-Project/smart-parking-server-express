@@ -2,10 +2,9 @@ import { gql } from 'apollo-server-express';
 
 export default gql`
   extend type Query {
-    getPaymentAmount(id: ID!): Float!
     getCurrentParkingSession(id: ID!): ParkingSession!
     getAllCurrentUserParkingSessions(userId: ID!): [ParkingSession]
-    getAllUserSessions: [ParkingSession]
+    getAllUserParkingSessions: [ParkingSession]
   }
 
   extend type Mutation {
@@ -14,7 +13,7 @@ export default gql`
       newSession: CreateParkingSessionInput!
     ): ParkingSession!
     endParkingSession(endSession: EndParkingSessionInput!): ParkingSession!
-    paidForSession(sessionId: ID!, hasPaid: Boolean!): ParkingSession!
+    paidForSession(id: ID!, hasPaid: Boolean!): ParkingSession!
   }
 
   input CreateParkingSessionInput {

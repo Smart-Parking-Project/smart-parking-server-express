@@ -72,8 +72,8 @@ export default {
         id: result._id,
       };
     },
-    paidForSession: async (_, { sessionId, hasPaid }, { ParkingSession }) => {
-      let parkingSession = await ParkingSession.findOne({ _id: sessionId });
+    paidForSession: async (_, { id, hasPaid }, { ParkingSession }) => {
+      let parkingSession = await ParkingSession.findOne({ _id: id });
 
       if (!parkingSession) {
         let msg = 'parkingSession not found.';
@@ -90,9 +90,14 @@ export default {
 
       let result = await parkingSession.save();
       return {
-        ...result.doc,
+        ...result._doc,
         id: result._id,
       };
+    },
+  },
+  Query: {
+    getAllUserParkingSessions: async (_, args, { ParkingSession }) => {
+      return ParkingSession.find({});
     },
   },
 };
