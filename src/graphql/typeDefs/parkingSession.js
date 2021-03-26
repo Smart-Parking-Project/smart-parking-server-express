@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-express';
 export default gql`
   extend type Query {
     getCurrentParkingSession(id: ID!): ParkingSession!
+    #getRecentParkingSession: Boolean!
     getAllCurrentUserParkingSessions(id: ID!): [ParkingSession]
     getAllUserParkingSessions: [ParkingSession]
   }

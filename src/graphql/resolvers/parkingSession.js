@@ -1,4 +1,5 @@
 import { mongoose } from 'mongoose';
+const lodash = require('lodash');
 import parkingSession from '../typeDefs/parkingSession';
 
 export default {
@@ -112,6 +113,22 @@ export default {
       }
       return parkingSessions;
     },
+    // getRecentParkingSession: async (_, args, { ParkingSession }) => {
+    //   let currentTime = new Date();
+    //   let hours = currentTime.getHours();
+    //   let min = currentTime.getMinutes();
+    //   let sec = currentTime.getSeconds();
+    //   //console.log(`${hours}${min}${sec}`);
+    //   let current = `${hours}${min}${sec}`;
+    //   console.log(current);
+    //   let allSessions = await ParkingSession.find({});
+    //   let enterTime = lodash.toNumber(
+    //     allSessions[0].enterTime.replace(/:/g, '')
+    //   );
+
+    //   console.log(enterTime);
+    //   return true;
+    // },
   },
 };
 
