@@ -65,6 +65,7 @@ export default {
       }
 
       password = await hash(password, 12);
+      let isAdmin = false;
 
       const newUser = new User({
         username,
@@ -72,6 +73,7 @@ export default {
         password,
         firstName,
         lastName,
+        isAdmin,
       });
 
       let result = await newUser.save();

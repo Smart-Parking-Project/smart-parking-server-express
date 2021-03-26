@@ -22,5 +22,6 @@ export default gql`
     token: String!
     firstName: String
     lastName: String
+    isAdmin: Boolean
   }
 `;
